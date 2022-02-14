@@ -49,7 +49,7 @@ When creating a workflow which deploys an entire distributed application in one 
 
 ``` yaml
     - name: Deploy Your Service
-      uses: adityakar/workflow-dispatcher
+      uses: adityakar/workflow-dispatcher@v1.0
       with:
         owner: your-github-org
         repo: your-repo
