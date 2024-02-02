@@ -57,7 +57,7 @@ function find_workflow {
   last_commit_author=$(echo "$workflow" | jq -r '.head_commit.author.email')
   last_commit_date=$(echo "$workflow" | jq -r '.head_commit.timestamp')
 
-  echo "::set-output name=workflow-id::${workflow_id}"
+  echo "workflow-id=${workflow_id}" >> $GITHUB_OUTPUT
   echo "Workflow started. Workflow id is ${workflow_id}. Last commit was by ${last_commit_author} on ${last_commit_date::10}."
   echo "Check the status at: ${html_url}"
 }
@@ -85,7 +85,7 @@ function wait_on_workflow {
   done
 
   # Set the value of conclusion as an output parameter for subsequent steps to consume.
-  echo "::set-output name=conclusion::${conclusion}"
+  echo "conclusion=${conclusion}" >> $GITHUB_OUTPUT
   if [[ $conclusion == "\"success\"" ]]
   then
     echo "Workflow run successful"
